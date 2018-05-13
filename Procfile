@@ -1,1 +1,1 @@
-web: gunicorn ntcc-mk:app
+web: gunicorn predict:predict_gdp
