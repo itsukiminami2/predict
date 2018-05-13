@@ -9,7 +9,7 @@ from flask import Flask, url_for, request
 
 app = Flask(__name__)
 
-@app.route('/predict')
+@app.route('/')
 def predict():
     plt.style.use('fivethirtyeight')
     plt.rcParams['figure.figsize']=(20,10)
@@ -41,6 +41,3 @@ def predict():
     fig.savefig('static\plot_%s.png' % country, dpi=100)
 
     return '<img src=' + url_for('static', filename='plot_%s.png' % country) + ' width=800 height=400 />'
-
-if __name__ == '__main__':
-    app.run()
