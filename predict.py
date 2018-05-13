@@ -10,7 +10,7 @@ from flask import Flask, url_for
 app = Flask(__name__)
 
 @app.route('/<country>')
-def predict_gdp(country):
+def predict_gdp(self, country):
     plt.style.use('fivethirtyeight')
     plt.rcParams['figure.figsize']=(20,10)
 
