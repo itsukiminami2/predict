@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,9 +33,7 @@ def predict_gdp(country):
     df_plot.columns = ['year', 'current gdp', 'predicted gdp']
     df_plot.set_index('year', inplace=True)
 
-    print(df_plot)
-
-    plt.plot(df_plot)
+    df_plot.plot()
     fig = plt.gcf()
     plt.title('Nominal GDP Growth')
     plt.ylabel('GDP (billions of US$)')
