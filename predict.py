@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('agg')
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ def predict_gdp(country):
     df = quandl.get(code)
     df = df.reset_index()
     df.columns = ['ds', 'y']
-
+    
     model = Prophet(weekly_seasonality=True, daily_seasonality=True)
     model.fit(df)
     future = model.make_future_dataframe(periods=2, freq = 'a')
