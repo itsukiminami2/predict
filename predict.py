@@ -5,14 +5,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import quandl
 from fbprophet import Prophet
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 
 app = Flask(__name__)
 
-@app.route('/<country>')
-def predict_gdp(country, self):
+@app.route('/predict')
+def predict():
     plt.style.use('fivethirtyeight')
     plt.rcParams['figure.figsize']=(20,10)
+    country = request.args['country']
 
     quandl.ApiConfig.api_key = "U-FFkY7wcyoehrZnXxWs"
     code = 'ODA/%s_NGDP' % country
@@ -39,7 +40,7 @@ def predict_gdp(country, self):
     plt.ylabel('GDP (billions of US$)')
     fig.savefig('static\plot_%s.png' % country, dpi=100)
 
-    return '<img src=' + url_for('static',filename='plot_%s.png' % country) + ' width=800 height=400 />'
+    return '<img src=' + url_for('static', filename='plot_%s.png' % country) + ' width=800 height=400 />'
 
 if __name__ == '__main__':
     app.run()

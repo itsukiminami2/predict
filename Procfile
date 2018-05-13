@@ -1,1 +1,1 @@
-web: gunicorn predict:predict_gdp
+web: gunicorn predict:predict
