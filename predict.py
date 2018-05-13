@@ -40,3 +40,6 @@ def predict_gdp(country):
     fig.savefig('static\plot_%s.png' % country, dpi=100)
 
     return '<img src=' + url_for('static',filename='plot_%s.png' % country) + ' width=800 height=400 />'
+
+if __name__ == '__main__':
+    app.run()
