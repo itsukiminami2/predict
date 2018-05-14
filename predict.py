@@ -5,9 +5,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 import quandl
 from fbprophet import Prophet
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, render_template_string
 
 app = Flask(__name__)
+
+TEMPLATE = '''
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+            <img src="{{ url_for('static',filename='plot_' + country + '.png') }}"  width="800" height="400" />
+</body>
+</html>
+'''
 
 @app.route('/')
 def predict():
@@ -40,4 +55,6 @@ def predict():
     plt.ylabel('GDP (billions of US$)')
     fig.savefig('static\plot_%s.png' % country, dpi=100)
 
-    return '<img src=' + url_for('static', filename='plot_%s.png' % country) + ' width=800 height=400 />'
+    return render_template_string(TEMPLATE, **{
+        'country': country
+    })
