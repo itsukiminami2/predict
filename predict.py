@@ -85,6 +85,19 @@ def predict():
     future = model.make_future_dataframe(periods=4, freq = 'a')
     forecast = model.predict(future)
     
+    df.set_index('ds', inplace=True)
+    forecast.set_index('ds', inplace=True)
+
+    df_plot = df.join(forecast[['yhat']], how = 'outer')
+    df_plot = df_plot.reset_index()
+    df_plot.columns = ['year', 'current gdp', 'predicted gdp']
+    df_plot.set_index('year', inplace=True)
+
+    plt.plot(df_plot)
+    fig = plt.gcf()
+    plt.title('Nominal GDP Growth')
+    plt.ylabel('GDP (billions of US$)')
+    fig.savefig('static/plot_%s.png' % country, dpi=100)
     
     predictions = list(forecast[['yhat']].values.flatten())[-4:]
     return render_template_string(TEMPLATE, **{
