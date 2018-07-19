@@ -73,7 +73,7 @@ def predict():
     plt.rcParams['figure.figsize']=(20,10)
     country = request.args['country']
 
-    quandl.ApiConfig.api_key = "U-FFkY7wcyoehrZnXxWs"
+    quandl.ApiConfig.api_key = "Your Quandl API key"
     code = 'ODA/%s_NGDP' % country
     df = quandl.get(code)
     df = df[:-5]
