@@ -1,6 +1,6 @@
 # predict
 
-Python backend for the GDP growth predicting app.
+Python backend for the GDP predicting app.
 
 ### requirements.txt
 Python dependencies list created using "pip freeze > requirements.txt".
