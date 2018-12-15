@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('agg')
+matplotlib.use('agg')   # use the 'agg' backend to write the output to a PNG file.
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,6 +8,8 @@ from fbprophet import Prophet
 from flask import Flask, url_for, request, render_template_string
 
 app = Flask(__name__)
+
+# The HTML template to be served to the front-end
 
 TEMPLATE = '''
 <!DOCTYPE html>
@@ -69,12 +71,12 @@ TEMPLATE = '''
 
 @app.route('/')
 def predict():
-    plt.style.use('fivethirtyeight')
-    plt.rcParams['figure.figsize']=(20,10)
+    plt.style.use('fivethirtyeight')    # use the 'fivethirtyeight' style sheet from fivethirtyeight.com
+    plt.rcParams['figure.figsize']=(20,10)  # plot figure size
     country = request.args['country']
 
     quandl.ApiConfig.api_key = "Your Quandl API key"
-    code = 'ODA/%s_NGDP' % country
+    code = 'ODA/%s_NGDP' % country   # code to access the historical GDP data from Quandl.
     df = quandl.get(code)
     df = df[:-5]
     df = df.reset_index()
