@@ -1,6 +1,6 @@
 # predict
 
-Python backend for the GDP predicting app.
+Python backend for the GDP predicting android app. Uses facebook's prophet library to do time series analysis on the GDP data of nations to make GDP predictions for the next two years. 
 
 ### requirements.txt
 Python dependencies list created using "pip freeze > requirements.txt".
